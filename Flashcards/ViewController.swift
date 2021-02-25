@@ -45,7 +45,12 @@ class ViewController: UIViewController {
     }
 
     @IBAction func didTapOnFlashcard(_ sender: Any) {
-        questionCard.isHidden = true
+        if questionCard.isHidden {
+            questionCard.isHidden = false
+        }
+        else {
+            questionCard.isHidden = true
+        }
         cardContainer.layer.shadowRadius = 0.0
         cardContainer.layer.shadowOpacity = 0.0
     }
