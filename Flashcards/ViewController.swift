@@ -10,11 +10,17 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var cardContainer: UIView!
+    
     @IBOutlet weak var questionCard: UILabel!
+    
     @IBOutlet weak var answerCard: UILabel!
+    
     @IBOutlet weak var answerTop: UIButton!
+    
     @IBOutlet weak var answerMiddle: UIButton!
+    
     @IBOutlet weak var answerBottom: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         cardContainer.layer.cornerRadius = 20.0
