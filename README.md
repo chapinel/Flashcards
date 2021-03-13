@@ -7,7 +7,7 @@ A simple flashcards app that allows a user to guess the correct answer to a seri
 
 ### App Walk-though
 
-<img src=https://i.imgur.com/itHDPzP.gif width=200><br>
+<img src=https://i.imgur.com/n2h4y2n.gif width=200><br>
 
 ## Required
 - [x] User can open the creation screen
