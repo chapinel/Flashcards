@@ -5,15 +5,9 @@
 ### App Description
 A simple flashcards app that allows a user to guess the correct answer to a series of questions, intended to test user knowledge on a subject.
 
-### App Walk-though
+### App Walk-through
 
-**GIF 1: Adding flashcards and browsing, deleting an existing card:**
-
-<img src=https://i.imgur.com/vEZ5A0g.gif width=200><br>
-
-**GIF 2: Closing the app and reopening, with previously created flashcards saved (the question, answer, and all multiple choice questions):**
-
-<img src=https://i.imgur.com/oqCd686.gif width=200><br>
+<img src=https://i.imgur.com/fOYUufO.gif width=200><br>
 
 ## Required
 - [x] User can browse through multiple flashcards
@@ -21,7 +15,7 @@ A simple flashcards app that allows a user to guess the correct answer to a seri
 - [x] Push code to GitHub
 ## Optional
 - [x] User can delete a flashcard
-- [ ] User can edit existing flashcard
+- [x] User can edit existing flashcard
 - [x] User can store multiple choice questions
 
 ## Lab 2
@@ -29,7 +23,7 @@ A simple flashcards app that allows a user to guess the correct answer to a seri
 ### App Description
 A simple flashcards app that allows a user to guess the correct answer to a series of questions, intended to test user knowledge on a subject.
 
-### App Walk-though
+### App Walk-through
 
 <img src=https://i.imgur.com/n2h4y2n.gif width=200><br>
 
@@ -49,7 +43,7 @@ A simple flashcards app that allows a user to guess the correct answer to a seri
 ### App Description
 A simple flashcards app that allows a user to guess the correct answer to a series of questions, intended to test user knowledge on a subject.
 
-### App Walk-though
+### App Walk-through
 <a href="https://imgur.com/A8twkqd"><img src="https://i.imgur.com/A8twkqd.gif" title="source: imgur.com" /></a>
 ## Required
 - [x] Create New Project in Xcode
