@@ -27,6 +27,8 @@ class CreationViewController: UIViewController {
     var middleSelection: String?
     var bottomSelection: String?
     
+    var isExisting = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,6 +38,11 @@ class CreationViewController: UIViewController {
         topChoiceTextField.text = topSelection
         middleChoiceTextField.text = middleSelection
         bottomChoiceTextField.text = bottomSelection
+        
+        if questionTextField.text == nil || questionTextField.text!.isEmpty {
+            isExisting = false
+        }
+        
     }
     
 
@@ -66,7 +73,9 @@ class CreationViewController: UIViewController {
         
         else {
             
-            flashcardsController.updateFlashcard(question: questionText!, answer: answerText!, topChoice: choiceTop!, middleChoice: choiceMiddle!, bottomChoice: choiceBottom!)
+            print(isExisting)
+            
+            flashcardsController.updateFlashcard(question: questionText!, answer: answerText!, topChoice: choiceTop!, middleChoice: choiceMiddle!, bottomChoice: choiceBottom!, isExisting: isExisting)
             
             dismiss(animated: true)
             

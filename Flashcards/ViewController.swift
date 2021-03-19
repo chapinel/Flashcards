@@ -62,7 +62,7 @@ class ViewController: UIViewController {
         readSavedFlashcards()
 
         if flashcards.count == 0 {
-            updateFlashcard(question: "What dice do you roll for initiative?", answer: "D20", topChoice: "D8", middleChoice: "D20", bottomChoice: "D12")
+            updateFlashcard(question: "What dice do you roll for initiative?", answer: "D20", topChoice: "D8", middleChoice: "D20", bottomChoice: "D12", isExisting: false)
         } else {
             updateLabels()
             updateNextPreviousButtons()
@@ -152,20 +152,29 @@ class ViewController: UIViewController {
         }
     }
     
-    func updateFlashcard(question: String, answer: String, topChoice: String, middleChoice: String, bottomChoice: String) {
+    func updateFlashcard(question: String, answer: String, topChoice: String, middleChoice: String, bottomChoice: String, isExisting: Bool) {
         
         let flashcard = Flashcard(question: question, answer: answer, top: topChoice, middle: middleChoice, bottom: bottomChoice)
         
-        flashcards.append(flashcard)
-        currentIndex = flashcards.count - 1
+        if isExisting {
+            
+            flashcards[currentIndex] = flashcard
+            
+        } else {
+            
+            flashcards.append(flashcard)
+            currentIndex = flashcards.count - 1
+            
+            print("added new flashcard!")
+            print("We now have \(flashcards.count) flashcards")
+            print("Our current index is \(currentIndex)")
+            
+            
+        }
         
         updateLabels()
-        
-        print("added new flashcard!")
-        print("We now have \(flashcards.count) flashcards")
-        print("Our current index is \(currentIndex)")
-        
         updateNextPreviousButtons()
+        saveAllFlashcardsToDisk()
     }
     
     func updateLabels() {
