@@ -1,11 +1,29 @@
 ## Flashcards
 
+## Lab 3
+
+### App Description
+A simple flashcards app that allows a user to guess the correct answer to a series of questions, intended to test user knowledge on a subject.
+
+### App Walk-through
+
+<img src=https://i.imgur.com/fOYUufO.gif width=200><br>
+
+## Required
+- [x] User can browse through multiple flashcards
+- [x] User can re-open the app and see previously created flashcards
+- [x] Push code to GitHub
+## Optional
+- [x] User can delete a flashcard
+- [x] User can edit existing flashcard
+- [x] User can store multiple choice questions
+
 ## Lab 2
 
 ### App Description
 A simple flashcards app that allows a user to guess the correct answer to a series of questions, intended to test user knowledge on a subject.
 
-### App Walk-though
+### App Walk-through
 
 <img src=https://i.imgur.com/n2h4y2n.gif width=200><br>
 
@@ -25,7 +43,7 @@ A simple flashcards app that allows a user to guess the correct answer to a seri
 ### App Description
 A simple flashcards app that allows a user to guess the correct answer to a series of questions, intended to test user knowledge on a subject.
 
-### App Walk-though
+### App Walk-through
 <a href="https://imgur.com/A8twkqd"><img src="https://i.imgur.com/A8twkqd.gif" title="source: imgur.com" /></a>
 ## Required
 - [x] Create New Project in Xcode
