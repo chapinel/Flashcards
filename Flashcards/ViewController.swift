@@ -7,6 +7,14 @@
 
 import UIKit
 
+struct Flashcard {
+    var question: String
+    var answer: String
+    var top: String
+    var middle: String
+    var bottom: String
+}
+
 class ViewController: UIViewController {
 
     @IBOutlet weak var cardContainer: UIView!
@@ -20,6 +28,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var answerMiddle: UIButton!
     
     @IBOutlet weak var answerBottom: UIButton!
+    
+    @IBOutlet weak var nextButton: UIButton!
+    
+    @IBOutlet weak var prevButton: UIButton!
+    
+    var flashcards = [Flashcard]()
+    
+    var currentIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +58,15 @@ class ViewController: UIViewController {
         answerBottom.layer.cornerRadius = 20.0
         answerBottom.layer.borderWidth = 3.0
         answerBottom.layer.borderColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        
+        readSavedFlashcards()
+
+        if flashcards.count == 0 {
+            updateFlashcard(question: "What dice do you roll for initiative?", answer: "D20", topChoice: "D8", middleChoice: "D20", bottomChoice: "D12")
+        } else {
+            updateLabels()
+            updateNextPreviousButtons()
+        }
     }
     
 
@@ -66,14 +91,116 @@ class ViewController: UIViewController {
         answerBottom.isHidden = true
     }
     
-    func updateFlashcard(question: String, answer: String, topChoice: String, middleChoice: String, bottomChoice: String) {
-        questionCard.text = question
-        answerCard.text = answer
+    @IBAction func didTapOnPrev(_ sender: Any) {
         
-        answerTop.setTitle(topChoice, for: .normal)
-        answerMiddle.setTitle(middleChoice, for: .normal)
-        answerBottom.setTitle(bottomChoice, for: .normal)
+        currentIndex = currentIndex - 1
+        
+        updateLabels()
+        
+        updateNextPreviousButtons()
     }
+    
+    @IBAction func didTapOnNext(_ sender: Any) {
+        
+        currentIndex = currentIndex + 1
+        
+        updateLabels()
+        
+        updateNextPreviousButtons()
+    }
+    
+    @IBAction func didTapOnDelete(_ sender: Any) {
+        let alert = UIAlertController(title: "Delete flashcard", message: "Are you sure you want to delete this flashcard?", preferredStyle: .actionSheet)
+                
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+            self.deleteCurrentFlashcard()
+            }
+                
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+                
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+                
+        present(alert, animated: true)
+    }
+    
+    func deleteCurrentFlashcard() {
+            
+        flashcards.remove(at: currentIndex)
+        
+        if currentIndex > flashcards.count - 1 {
+            currentIndex = flashcards.count - 1
+        }
+        
+        updateNextPreviousButtons()
+        updateLabels()
+        saveAllFlashcardsToDisk()
+        
+    }
+    
+    func updateNextPreviousButtons() {
+        if currentIndex == flashcards.count - 1 {
+            nextButton.isEnabled = false
+        } else {
+            nextButton.isEnabled = true
+        }
+        
+        if currentIndex == 0 {
+            prevButton.isEnabled = false
+        } else {
+            prevButton.isEnabled = true
+        }
+    }
+    
+    func updateFlashcard(question: String, answer: String, topChoice: String, middleChoice: String, bottomChoice: String) {
+        
+        let flashcard = Flashcard(question: question, answer: answer, top: topChoice, middle: middleChoice, bottom: bottomChoice)
+        
+        flashcards.append(flashcard)
+        currentIndex = flashcards.count - 1
+        
+        updateLabels()
+        
+        print("added new flashcard!")
+        print("We now have \(flashcards.count) flashcards")
+        print("Our current index is \(currentIndex)")
+        
+        updateNextPreviousButtons()
+    }
+    
+    func updateLabels() {
+        
+        let currentFlashcard = flashcards[currentIndex]
+        
+        questionCard.text = currentFlashcard.question
+        answerCard.text = currentFlashcard.answer
+        
+        answerTop.setTitle(currentFlashcard.top, for: .normal)
+        answerMiddle.setTitle(currentFlashcard.middle, for: .normal)
+        answerBottom.setTitle(currentFlashcard.bottom, for: .normal)
+        
+    }
+    
+    func saveAllFlashcardsToDisk() {
+            
+            let dictionaryArray = flashcards.map { (card) -> [String: String] in
+                return ["question": card.question, "answer": card.answer, "top": card.top, "middle": card.middle, "bottom": card.bottom]
+            }
+            
+            UserDefaults.standard.set(dictionaryArray, forKey: "flashcards")
+            
+            print("Flashcards saved to UserDefaults")
+        }
+    
+    func readSavedFlashcards() {
+            if let dictionaryArray = UserDefaults.standard.array(forKey: "flashcards") as? [[String: String]] {
+                
+                let savedCards = dictionaryArray.map { dictionary -> Flashcard in return Flashcard(question: dictionary["question"]!, answer: dictionary["answer"]!, top: dictionary["top"]!, middle: dictionary["middle"]!, bottom: dictionary["bottom"]!)
+                }
+                
+                flashcards.append(contentsOf: savedCards)
+            }
+        }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let navigationController = segue.destination as! UINavigationController
@@ -85,6 +212,10 @@ class ViewController: UIViewController {
         if segue.identifier == "EditSegue" {
             creationController.initialQuestion = questionCard.text
             creationController.initialAnswer = answerCard.text
+            
+            creationController.topSelection = answerTop.title(for: .normal)
+            creationController.middleSelection = answerMiddle.title(for: .normal)
+            creationController.bottomSelection = answerBottom.title(for: .normal)
         }
     }
 }

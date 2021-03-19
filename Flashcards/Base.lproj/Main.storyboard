@@ -45,8 +45,21 @@
                                             <segue destination="1SO-Mp-d56" kind="presentation" identifier="EditSegue" id="8PO-uF-NWL"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="07G-VV-dz6">
+                                        <rect key="frame" x="9" y="6" width="43" height="58"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                        <state key="normal" title="✖️"/>
+                                        <connections>
+                                            <action selector="didTapOnDelete:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JFx-6W-yj2"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="xxS-ST-Wni" appends="YES" id="uBq-n7-DpX"/>
+                                </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wep-OW-kIY">
                                 <rect key="frame" x="60" y="407" width="300" height="56"/>
@@ -92,6 +105,22 @@
                                     <segue destination="1SO-Mp-d56" kind="presentation" id="3KZ-HU-WG7"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OqO-Td-8i1">
+                                <rect key="frame" x="43" y="775" width="31" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Prev"/>
+                                <connections>
+                                    <action selector="didTapOnPrev:" destination="BYZ-38-t0r" eventType="touchUpInside" id="i1S-Hs-c9m"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cib-94-Umx">
+                                <rect key="frame" x="335" y="775" width="32" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="didTapOnNext:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Q4z-QO-rn8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -106,6 +135,8 @@
                         <outlet property="answerMiddle" destination="Q7H-lC-HRJ" id="am7-bp-AIE"/>
                         <outlet property="answerTop" destination="Wep-OW-kIY" id="Tso-2a-uU6"/>
                         <outlet property="cardContainer" destination="mic-Or-DI5" id="wXq-BM-qc9"/>
+                        <outlet property="nextButton" destination="cib-94-Umx" id="k6k-vd-Qwu"/>
+                        <outlet property="prevButton" destination="OqO-Td-8i1" id="OAn-Cv-ZeJ"/>
                         <outlet property="questionCard" destination="hnE-fl-FCA" id="o8D-ZM-zgz"/>
                     </connections>
                 </viewController>
@@ -116,7 +147,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="599" y="96"/>
+            <point key="canvasLocation" x="598.55072463768124" y="95.758928571428569"/>
         </scene>
         <!--Creation View Controller-->
         <scene sceneID="CyC-uE-tJ1">

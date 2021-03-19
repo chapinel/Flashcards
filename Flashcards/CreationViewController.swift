@@ -23,12 +23,19 @@ class CreationViewController: UIViewController {
     
     var initialQuestion: String?
     var initialAnswer: String?
+    var topSelection: String?
+    var middleSelection: String?
+    var bottomSelection: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         questionTextField.text = initialQuestion
         answerTextField.text = initialAnswer
+        
+        topChoiceTextField.text = topSelection
+        middleChoiceTextField.text = middleSelection
+        bottomChoiceTextField.text = bottomSelection
     }
     
 
