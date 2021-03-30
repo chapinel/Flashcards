@@ -71,42 +71,102 @@ class ViewController: UIViewController {
     
 
     @IBAction func didTapOnFlashcard(_ sender: Any) {
-        if questionCard.isHidden {
-            questionCard.isHidden = false
+        flipFlashcard()
+    }
+    
+    func flipFlashcard() {
+        
+        UIView.transition(with: cardContainer, duration: 0.3, options: .transitionFlipFromRight) {
+            if self.questionCard.isHidden {
+                self.questionCard.isHidden = false
+            }
+            else {
+                self.questionCard.isHidden = true
+            }
         }
-        else {
-            questionCard.isHidden = true
+    }
+    
+    func animateCardOutNext() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.cardContainer.transform = CGAffineTransform.identity.translatedBy(x: -300.0, y: 0.0)
+        }, completion: { finished in
+            
+            self.updateLabels()
+            
+            self.animateCardInNext()
+        })
+    }
+
+    func animateCardOutPrev() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.cardContainer.transform = CGAffineTransform.identity.translatedBy(x: 300.0, y: 0.0)
+        }, completion: { finished in
+            
+            self.updateLabels()
+            
+            self.animateCardInPrev()
+            
+        })
+    }
+    
+    func animateCardInNext() {
+        
+        cardContainer.transform = CGAffineTransform.identity.translatedBy(x: 300.0, y: 0.0)
+        
+        UIView.animate(withDuration: 0.3) {
+            self.cardContainer.transform = CGAffineTransform.identity
         }
-        cardContainer.layer.shadowRadius = 0.0
-        cardContainer.layer.shadowOpacity = 0.0
+    }
+    
+    func animateCardInPrev() {
+        
+        cardContainer.transform = CGAffineTransform.identity.translatedBy(x: -300.0, y: 0.0)
+        
+        UIView.animate(withDuration: 0.3) {
+            self.cardContainer.transform = CGAffineTransform.identity
+        }
     }
     
     @IBAction func didTapOptionOne(_ sender: Any) {
-        answerTop.isHidden = true
+        answerTop.isEnabled = false
     }
     @IBAction func didTapOptionTwo(_ sender: Any) {
-        questionCard.isHidden = true
+        flipFlashcard()
     }
     @IBAction func didTapOptionThree(_ sender: Any) {
-        answerBottom.isHidden = true
+        answerBottom.isEnabled = false
     }
     
     @IBAction func didTapOnPrev(_ sender: Any) {
         
+        animateCardOutPrev()
+        
         currentIndex = currentIndex - 1
         
-        updateLabels()
-        
         updateNextPreviousButtons()
+        
+        if questionCard.isHidden == true {
+            questionCard.isHidden = false
+        }
+        
+        answerTop.isEnabled = true
+        answerBottom.isEnabled = true
     }
     
     @IBAction func didTapOnNext(_ sender: Any) {
         
+        animateCardOutNext()
+        
         currentIndex = currentIndex + 1
         
-        updateLabels()
-        
         updateNextPreviousButtons()
+        
+        if questionCard.isHidden == true {
+            questionCard.isHidden = false
+        }
+        
+        answerTop.isEnabled = true
+        answerBottom.isEnabled = true
     }
     
     @IBAction func didTapOnDelete(_ sender: Any) {
